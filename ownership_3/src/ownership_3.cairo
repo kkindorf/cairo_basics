@@ -13,12 +13,12 @@ struct A {
 }
 
 fn main() {
-    A { dict: Default::default() };
-    let mut dictionaryInserts: Felt252Dict<u64> = Default::default();
-    dictionaryInserts.insert('foo', 100);
-    dictionaryInserts.insert('bar', 200);
-    dictionaryInserts.insert('bar', 300);
+    let mut dictionaryTypeA = A { dict: Default::default() };
+
+    dictionaryTypeA.dict.insert('foo', 100);
+    dictionaryTypeA.dict.insert('bar', 200);
+    dictionaryTypeA.dict.insert('bar', 300);
 
     // bar key returns 300 since the the dictionary for type A has been squashed by the compiler
-    dictionaryInserts.get('bar').print()
+    dictionaryTypeA.dict.get('bar').print()
 }
