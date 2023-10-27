@@ -28,6 +28,7 @@ impl RectangleImpl of RectangleTrait {
     }
 }
 
+
 fn main() {
     let rect1 = Rectangle { width: 30, height: 50 };
     let rect2 = Rectangle { width: 10, height: 40 };
@@ -36,3 +37,17 @@ fn main() {
     rect1.can_hold(@rect2).print(); // true
     rect1.can_hold(@rect3).print() // false
 }
+
+#[test]
+fn larger_can_hold_smaller() {
+    let larger = Rectangle { height: 7, width: 8 };
+    let smaller = Rectangle { height: 1, width: 5 };
+    assert(larger.can_hold(@smaller), 'rectangle cannot hold');
+} // passes ok
+
+#[test]
+fn smaller_cannot_hold_larger() {
+     let larger = Rectangle { height: 7, width: 8, };
+    let smaller = Rectangle { height: 1, width: 5, };
+    assert(!smaller.can_hold(@larger), 'rectangle cannot hold');
+} // passes ok
